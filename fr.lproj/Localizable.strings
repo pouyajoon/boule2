@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Boule2
+
+  Created by Aurelien Gasser on 1/15/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+
+"VIEW_NAME_ROOT" = "Accueil";
+"VIEW_NAME_GAME" = "Jeux";

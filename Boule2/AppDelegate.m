@@ -10,18 +10,36 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize navigationController;
+
+//@synthesize viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [application setIdleTimerDisabled:YES];
+    
+    navigationController = [[NavigationController alloc] init];
+    [self.window addSubview:navigationController.view]; 
+    
+    [navigationController setHome];
     [self.window makeKeyAndVisible];
+    
+    
+    
     return YES;
+}
+
+-(void)dealloc{
+    [navigationController dealloc];
+    [window dealloc];
+    [super dealloc];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
