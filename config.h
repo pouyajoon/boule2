@@ -13,9 +13,12 @@
 #define RING_DIE_TIME 20
 
 #define TIMER_RING 1.0 / 60.0
-#define TIMER_SET_RING 1
+#define TIMER_SET_RING 150
 
 #define START_LIFE 3
 
 #define RING_MIN_DISTANCE 5
+
+#define KEEP_HIGHSCORE_KEY @"HighScore"
+
 #endif

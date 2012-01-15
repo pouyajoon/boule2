@@ -20,6 +20,13 @@
     return self;
 }
 
+-(void)setHighScore{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSInteger hScore = [prefs integerForKey:KEEP_HIGHSCORE_KEY];
+    [highScoreLabel setText:[NSString stringWithFormat:@"%d", hScore]];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -30,15 +37,13 @@
 
 #pragma mark - View lifecycle
 
--(void)loadView{
-    NSLog(@"Loaded");
-    [super loadView];
-}
-
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+
+    [self initView];
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -62,14 +67,17 @@
     exit(1);
 }
 
--(void) loadLabels{
+-(void) initView{
     NavigationController *nv = (NavigationController *)self.navigationController;
     if (nv.gameController == nil){
-       BPlay.titleLabel.text = @"Play";
+        [BPlay setTitle:NSLocalizedString(@"VIEW_ROOT_B_PLAY", nil) forState:0 ];
     }
     else {
-       BPlay.titleLabel.text = @"Resume";        
+        [BPlay setTitle:NSLocalizedString(@"VIEW_ROOT_B_RESUME", nil) forState:0 ]; 
     }
+    [highScoreLabelText setText:NSLocalizedString(@"VIEW_ROOT_L_HIGHSCORE", nil)];
+    [BExit setTitle:NSLocalizedString(@"VIEW_ROOT_B_EXIT", nil) forState:0 ]; 
+    [self setHighScore];
 }
 
 

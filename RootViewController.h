@@ -13,11 +13,16 @@
 @interface RootViewController : UIViewController{
 
     IBOutlet UIButton *BPlay;    
+    IBOutlet UIButton *BExit;    
+    IBOutlet UILabel *highScoreLabelText;
+    IBOutlet UILabel *highScoreLabel;
+    
 }
 
 -(IBAction)play: (id)sender;
 -(IBAction)BAexit: (id)sender;
--(void)loadLabels;
+-(void)initView;
+-(void)setHighScore;
 
 @end
 

@@ -24,8 +24,12 @@
 		284D567A14C20B5700B76398 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284D567914C20B5700B76398 /* NavigationController.m */; };
 		284D568114C306BB00B76398 /* Restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 284D568014C306BB00B76398 /* Restart.png */; };
 		284D568C14C3288E00B76398 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 284D568E14C3288E00B76398 /* Localizable.strings */; };
-		284D569014C32B7500B76398 /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284D569214C32B7500B76398 /* GameController.xib */; };
-		284D56A514C32EE300B76398 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284D56A714C32EE300B76398 /* RootViewController.xib */; };
+		2855F1DE14C33A790063CC4F /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1DF14C33A790063CC4F /* RootViewController.xib */; };
+		2855F1E614C34C900063CC4F /* green-circle-empty.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1E514C34C900063CC4F /* green-circle-empty.gif */; };
+		2855F1EA14C3513E0063CC4F /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1E714C3513E0063CC4F /* green.png */; };
+		2855F1EB14C3513E0063CC4F /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1E814C3513E0063CC4F /* orange.png */; };
+		2855F1EC14C3513E0063CC4F /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1E914C3513E0063CC4F /* red.png */; };
+		2855F1ED14C353560063CC4F /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1EE14C353560063CC4F /* GameController.xib */; };
 		285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285BEABC14C1F10E00DCF158 /* RootViewController.m */; };
 		28EF388414B9391A00881B01 /* Ring.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EF388314B9391A00881B01 /* Ring.m */; };
 /* End PBXBuildFile section */
@@ -55,10 +59,12 @@
 		284D568014C306BB00B76398 /* Restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Restart.png; sourceTree = "<group>"; };
 		284D568D14C3288E00B76398 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		284D568F14C3290600B76398 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		284D569114C32B7500B76398 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GameController.xib; sourceTree = "<group>"; };
-		284D569314C32BC200B76398 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/GameController.xib; sourceTree = "<group>"; };
-		284D56A614C32EE300B76398 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
-		284D56A814C32EE900B76398 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		2855F1DF14C33A790063CC4F /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		2855F1E514C34C900063CC4F /* green-circle-empty.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "green-circle-empty.gif"; sourceTree = "<group>"; };
+		2855F1E714C3513E0063CC4F /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		2855F1E814C3513E0063CC4F /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
+		2855F1E914C3513E0063CC4F /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		2855F1EE14C353560063CC4F /* GameController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameController.xib; sourceTree = "<group>"; };
 		285BEABB14C1F10E00DCF158 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		285BEABC14C1F10E00DCF158 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28EF388214B9391A00881B01 /* Ring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ring.h; sourceTree = "<group>"; };
@@ -140,6 +146,10 @@
 		282FD3A614B8ECC1002195D4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2855F1E714C3513E0063CC4F /* green.png */,
+				2855F1E814C3513E0063CC4F /* orange.png */,
+				2855F1E914C3513E0063CC4F /* red.png */,
+				2855F1E514C34C900063CC4F /* green-circle-empty.gif */,
 				284D568314C306C100B76398 /* Icons */,
 				282FD3A414B8EC5E002195D4 /* Default.png */,
 				282FD3A214B8EC5C002195D4 /* Default@2x.png */,
@@ -166,8 +176,8 @@
 		282FD3A814B8ECF6002195D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				284D569214C32B7500B76398 /* GameController.xib */,
-				284D56A714C32EE300B76398 /* RootViewController.xib */,
+				2855F1EE14C353560063CC4F /* GameController.xib */,
+				2855F1DF14C33A790063CC4F /* RootViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -257,15 +267,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				282FD38514B8E9BB002195D4 /* InfoPlist.strings in Resources */,
-				284D569014C32B7500B76398 /* GameController.xib in Resources */,
+				2855F1ED14C353560063CC4F /* GameController.xib in Resources */,
 				282FD39F14B8EC4E002195D4 /* boule_logo@2x.png in Resources */,
 				282FD3A114B8EC56002195D4 /* boule_logo.png in Resources */,
 				282FD3A314B8EC5C002195D4 /* Default@2x.png in Resources */,
 				282FD3A514B8EC5E002195D4 /* Default.png in Resources */,
 				2808545914B96208004128E1 /* Boule.png in Resources */,
-				284D56A514C32EE300B76398 /* RootViewController.xib in Resources */,
+				2855F1DE14C33A790063CC4F /* RootViewController.xib in Resources */,
 				284D568114C306BB00B76398 /* Restart.png in Resources */,
 				284D568C14C3288E00B76398 /* Localizable.strings in Resources */,
+				2855F1E614C34C900063CC4F /* green-circle-empty.gif in Resources */,
+				2855F1EA14C3513E0063CC4F /* green.png in Resources */,
+				2855F1EB14C3513E0063CC4F /* orange.png in Resources */,
+				2855F1EC14C3513E0063CC4F /* red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,24 +318,6 @@
 				284D568F14C3290600B76398 /* fr */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		284D569214C32B7500B76398 /* GameController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				284D569114C32B7500B76398 /* en */,
-				284D569314C32BC200B76398 /* fr */,
-			);
-			name = GameController.xib;
-			sourceTree = "<group>";
-		};
-		284D56A714C32EE300B76398 /* RootViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				284D56A614C32EE300B76398 /* en */,
-				284D56A814C32EE900B76398 /* fr */,
-			);
-			name = RootViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

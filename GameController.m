@@ -35,8 +35,6 @@
 }
 
 
-
-
 - (void) draw
 {    
     //drawImage.frame = self.view.frame;
@@ -65,6 +63,13 @@
     [BRestart setHidden:NO];
     NSLog(@"game over");  
     [self pauseTimer];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    int score = [scoreLabel.text intValue];
+    NSInteger hScore = [prefs integerForKey:KEEP_HIGHSCORE_KEY];
+    if (score > hScore){
+        [prefs setInteger:score forKey:KEEP_HIGHSCORE_KEY];
+    }
 }
 
 
@@ -188,6 +193,12 @@
     [self moveBoule:x withY:y];    
 }
 
+-(void)initView{
+    [BRestart setTitle:NSLocalizedString(@"VIEW_GAME_B_RESTART", nil) forState:0 ];
+    [scoreLabelText setText:NSLocalizedString(@"VIEW_GAME_L_SCORE", nil)];
+    [gameOverLabel setText:NSLocalizedString(@"VIEW_GAME_L_GAMEOVER", nil)];
+    [lifesLabelText setText:NSLocalizedString(@"VIEW_GAME_L_LIFES", nil)];
+}
 
 
 
@@ -213,6 +224,8 @@
 - (void)viewDidLoad {    
       
     NSLog(@"View Loaded");
+    
+    [self initView];
 
     [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/30.0];
     [[UIAccelerometer sharedAccelerometer] setDelegate:self];
@@ -271,6 +284,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

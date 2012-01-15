@@ -43,7 +43,7 @@
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    NSLog(@"push : %d", [self.viewControllers count]);
+//    NSLog(@"push : %d", [self.viewControllers count]);
     if ([self.viewControllers count] > 0){
         if ([self.topViewController isMemberOfClass:[RootViewController class]]) {
             if (self.gameController != nil){
@@ -59,15 +59,18 @@
 
 -(UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
-    NSLog(@"pop : %d", [self.viewControllers count]);
+//    NSLog(@"pop : %d", [self.viewControllers count]);
     if ([self.viewControllers count] > 0){
         if ([self.topViewController isMemberOfClass:[GameController class]]) {
             self.gameController = (GameController*)[self visibleViewController];
+            [super popToRootViewControllerAnimated:YES];            
             [self.gameController pauseTimer];
             if ([self.gameController isBouleDead])
             {
                 self.gameController = nil;
             }
+            RootViewController *r = (RootViewController*)[self visibleViewController];            
+            [r initView];            
         }
     }
     return [super popViewControllerAnimated:animated];

@@ -8,4 +8,13 @@
 
 
 "VIEW_NAME_ROOT" = "Accueil";
-"VIEW_NAME_GAME" = "Jeux";
+"VIEW_NAME_GAME" = "La Boule 2";
+"VIEW_ROOT_B_PLAY" = "Jouer";
+"VIEW_ROOT_B_RESUME" = "Reprendre";
+"VIEW_ROOT_B_EXIT" = "Quitter";
+"VIEW_ROOT_L_HIGHSCORE" = "Meilleur score";
+
+"VIEW_GAME_B_RESTART" = "Essaye encore";
+"VIEW_GAME_L_GAMEOVER" = "DOMMAGE !";
+"VIEW_GAME_L_SCORE" = "Score :";
+"VIEW_GAME_L_LIFES" = "Vies :";

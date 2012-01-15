@@ -15,6 +15,8 @@
     IBOutlet UIImageView *boule;
     IBOutlet UILabel *yayLabel;
     IBOutlet UILabel *scoreLabel;
+    IBOutlet UILabel *scoreLabelText;
+    IBOutlet UILabel *lifesLabelText;
     IBOutlet UILabel *gameOverLabel;
     IBOutlet UILabel *lifesLabel;
     IBOutlet UIButton *BRestart;
