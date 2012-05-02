@@ -3,7 +3,7 @@
 //  Boule2
 //
 //  Created by Aurelien Gasser on 1/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 
 #import "RootViewController.h"
@@ -26,6 +26,11 @@
     [highScoreLabel setText:[NSString stringWithFormat:@"%d", hScore]];
 }
 
+-(int)getHighScore{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    return [prefs integerForKey:KEEP_HIGHSCORE_KEY];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,13 +40,28 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    float accelX = roundf(acceleration.x * 1000) / 1000;
+    float accelY = roundf(acceleration.y * 1000) / 1000;
+    
+    float xx = -accelX;
+	float yy = accelY;
+	float angle = atan2(yy, xx) + M_PI / 2;
+    
+    BPlay.transform = CGAffineTransformMakeRotation(angle);
+    BExit.transform = CGAffineTransformMakeRotation(angle);
+    BBestScore.transform = CGAffineTransformMakeRotation(angle);
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     // Do any additional setup after loading the view from its nib.
-    
 
+    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/30.0];
+    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+    
     [self initView];
     [super viewDidLoad];
 }
@@ -75,9 +95,13 @@
     else {
         [BPlay setTitle:NSLocalizedString(@"VIEW_ROOT_B_RESUME", nil) forState:0 ]; 
     }
-    [highScoreLabelText setText:NSLocalizedString(@"VIEW_ROOT_L_HIGHSCORE", nil)];
+    
+    BBestScore.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+    BBestScore.titleLabel.textAlignment = UITextAlignmentCenter;
+    NSString *hs = [NSString stringWithFormat:@"%@\n%d",NSLocalizedString(@"VIEW_ROOT_L_HIGHSCORE", nil), [self getHighScore]];
+    [BBestScore setTitle:hs forState:UIControlStateNormal];
     [BExit setTitle:NSLocalizedString(@"VIEW_ROOT_B_EXIT", nil) forState:0 ]; 
-    [self setHighScore];
+
 }
 
 

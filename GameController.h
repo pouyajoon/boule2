@@ -3,32 +3,41 @@
 //  Boule2
 //
 //  Created by Aurelien Gasser on 1/7/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "Ring.h"
+#import "Level.h"
 
+
+typedef enum{
+    playing,
+    waitingToRestart
+}EgameState;
 
 @interface GameController : UIViewController <UIAccelerometerDelegate>{
     IBOutlet UIImageView *boule;
-    IBOutlet UILabel *yayLabel;
+    IBOutlet UILabel *incScoreLabel;
     IBOutlet UILabel *scoreLabel;
-    IBOutlet UILabel *scoreLabelText;
-    IBOutlet UILabel *lifesLabelText;
     IBOutlet UILabel *gameOverLabel;
-    IBOutlet UILabel *lifesLabel;
     IBOutlet UIButton *BRestart;
+    IBOutlet UIButton *BHome;
 
+    int ringsCatched;
     NSMutableArray *rings;
+    NSMutableArray *deadRings;
     UIImageView *drawImage;
     NSTimer *timer;
     int life;
-    int yayLabelTimeleft;
+    int incScoreTimeleft;
     BOOL timerIsEnabled;
-    
+    Level *currentLevel;
     int timerCount;
+    EgameState gameState;
+    int drawLifes;
+    int difficultyPourcentage;
 
 }
 
@@ -41,7 +50,7 @@
 -(void) gameOver;
 -(BOOL) isBouleDead;
 -(IBAction)BARestart:(id)sender;
--(void) updateLifeLabel;
+-(IBAction)BAHome:(id)sender;
 -(void) updateScoreLabel:(int)score;
 -(void) initGame;
 

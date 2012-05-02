@@ -12,6 +12,8 @@
 	<array>
 		<string>boule_logo@2x.png</string>
 		<string>boule_logo.png</string>
+		<string>Default@2x.png</string>
+		<string>Default.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -21,6 +23,8 @@
 			<array>
 				<string>boule_logo@2x.png</string>
 				<string>boule_logo.png</string>
+				<string>Default@2x.png</string>
+				<string>Default.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>

@@ -3,7 +3,7 @@
 //  Boule2
 //
 //  Created by Aurelien Gasser on 1/7/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -18,11 +18,17 @@
 
 //@synthesize viewController;
 
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
     [application setIdleTimerDisabled:YES];
     
     navigationController = [[NavigationController alloc] init];
@@ -35,6 +41,7 @@
     
     return YES;
 }
+
 
 -(void)dealloc{
     [navigationController dealloc];

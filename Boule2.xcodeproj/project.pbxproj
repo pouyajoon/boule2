@@ -32,6 +32,9 @@
 		2855F1ED14C353560063CC4F /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1EE14C353560063CC4F /* GameController.xib */; };
 		285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285BEABC14C1F10E00DCF158 /* RootViewController.m */; };
 		28EF388414B9391A00881B01 /* Ring.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EF388314B9391A00881B01 /* Ring.m */; };
+		92C9813815399AC1007AD445 /* Pause-Green-Button-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */; };
+		92C9813B1539CB32007AD445 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C9813A1539CB32007AD445 /* Level.m */; };
+		92F0E739153976C300AE13BF /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F0E738153976C300AE13BF /* Default-Landscape@2x~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,22 +46,22 @@
 		282FD37E14B8E9BB002195D4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		282FD38214B8E9BB002195D4 /* Boule2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Boule2-Info.plist"; sourceTree = "<group>"; };
 		282FD38414B8E9BB002195D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		282FD38614B8E9BB002195D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		282FD38614B8E9BB002195D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		282FD38814B8E9BB002195D4 /* Boule2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Boule2-Prefix.pch"; sourceTree = "<group>"; };
-		282FD38914B8E9BB002195D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		282FD38A14B8E9BB002195D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		282FD38914B8E9BB002195D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		282FD38A14B8E9BB002195D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		282FD38D14B8E9BB002195D4 /* Boule2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Boule2.xcdatamodel; sourceTree = "<group>"; };
-		282FD39814B8E9F5002195D4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
-		282FD39914B8E9F5002195D4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		282FD39814B8E9F5002195D4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GameController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		282FD39914B8E9F5002195D4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GameController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		282FD39E14B8EC4E002195D4 /* boule_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boule_logo@2x.png"; sourceTree = "<group>"; };
 		282FD3A014B8EC56002195D4 /* boule_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boule_logo.png; sourceTree = "<group>"; };
 		282FD3A214B8EC5C002195D4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		282FD3A414B8EC5E002195D4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		284D567814C20B5700B76398 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		284D567814C20B5700B76398 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		284D567914C20B5700B76398 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		284D568014C306BB00B76398 /* Restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Restart.png; sourceTree = "<group>"; };
-		284D568D14C3288E00B76398 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		284D568F14C3290600B76398 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		284D568D14C3288E00B76398 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		284D568F14C3290600B76398 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		2855F1DF14C33A790063CC4F /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		2855F1E514C34C900063CC4F /* green-circle-empty.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "green-circle-empty.gif"; sourceTree = "<group>"; };
 		2855F1E714C3513E0063CC4F /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
@@ -69,7 +72,11 @@
 		285BEABC14C1F10E00DCF158 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28EF388214B9391A00881B01 /* Ring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ring.h; sourceTree = "<group>"; };
 		28EF388314B9391A00881B01 /* Ring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ring.m; sourceTree = "<group>"; };
-		28EF388614B9504C00881B01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		28EF388614B9504C00881B01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = config.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-Green-Button-icon.png"; sourceTree = "<group>"; };
+		92C981391539CB32007AD445 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		92C9813A1539CB32007AD445 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Level.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		92F0E738153976C300AE13BF /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +97,7 @@
 		282FD36914B8E9BB002195D4 = {
 			isa = PBXGroup;
 			children = (
+				92F0E738153976C300AE13BF /* Default-Landscape@2x~ipad.png */,
 				284D568814C3263E00B76398 /* Ressources */,
 				28EF388514B9503700881B01 /* Configs */,
 				28EF387E14B9371E00881B01 /* Classes */,
@@ -146,6 +154,7 @@
 		282FD3A614B8ECC1002195D4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */,
 				2855F1E714C3513E0063CC4F /* green.png */,
 				2855F1E814C3513E0063CC4F /* orange.png */,
 				2855F1E914C3513E0063CC4F /* red.png */,
@@ -203,6 +212,8 @@
 			children = (
 				28EF388214B9391A00881B01 /* Ring.h */,
 				28EF388314B9391A00881B01 /* Ring.m */,
+				92C981391539CB32007AD445 /* Level.h */,
+				92C9813A1539CB32007AD445 /* Level.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -280,6 +291,8 @@
 				2855F1EA14C3513E0063CC4F /* green.png in Resources */,
 				2855F1EB14C3513E0063CC4F /* orange.png in Resources */,
 				2855F1EC14C3513E0063CC4F /* red.png in Resources */,
+				92F0E739153976C300AE13BF /* Default-Landscape@2x~ipad.png in Resources */,
+				92C9813815399AC1007AD445 /* Pause-Green-Button-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +310,7 @@
 				28EF388414B9391A00881B01 /* Ring.m in Sources */,
 				285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */,
 				284D567A14C20B5700B76398 /* NavigationController.m in Sources */,
+				92C9813B1539CB32007AD445 /* Level.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

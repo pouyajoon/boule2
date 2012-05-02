@@ -3,7 +3,7 @@
 //  Boule2
 //
 //  Created by Aurelien Gasser on 1/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 
 #import "NavigationController.h"
@@ -16,10 +16,27 @@
 
 @synthesize gameController;
 
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+
 -(void) viewDidLoad
 {
     // change the back button and add an event handler
- 
+    self.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationBarHidden = YES;
+    
+
     self.gameController = nil;
 }
 
@@ -27,6 +44,7 @@
     RootViewController *myRootViewController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:[NSBundle mainBundle]];
     [self pushViewController:myRootViewController animated:NO];
     [myRootViewController release];
+
 }
 
 -(void)setGame{
