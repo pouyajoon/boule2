@@ -35,8 +35,6 @@
     // change the back button and add an event handler
     self.navigationBar.tintColor = [UIColor blackColor];
     self.navigationBarHidden = YES;
-    
-
     self.gameController = nil;
 }
 
@@ -58,6 +56,9 @@
     }
 }
 
+-(void)setHighScore{
+}
+
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -65,7 +66,7 @@
     if ([self.viewControllers count] > 0){
         if ([self.topViewController isMemberOfClass:[RootViewController class]]) {
             if (self.gameController != nil){
-                [self.gameController startTimer];
+                [self.gameController resumeGame];
                 [super pushViewController:self.gameController animated:animated];
                 self.gameController = nil;
                 return;

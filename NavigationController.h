@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 #import "GameController.h"
 
 @interface NavigationController : UINavigationController <UINavigationBarDelegate> {
@@ -16,7 +17,7 @@
 
 -(void) setHome;
 -(void) setGame;
-
+-(void) setHighScore;
 
 @property (nonatomic, retain) GameController *gameController;
 

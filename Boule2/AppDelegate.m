@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -17,7 +18,6 @@
 @synthesize navigationController;
 
 //@synthesize viewController;
-
 
 
 
@@ -36,6 +36,8 @@
     
     [navigationController setHome];
     [self.window makeKeyAndVisible];
+    
+
     
     
     

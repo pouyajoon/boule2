@@ -32,6 +32,9 @@
 		2855F1ED14C353560063CC4F /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1EE14C353560063CC4F /* GameController.xib */; };
 		285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285BEABC14C1F10E00DCF158 /* RootViewController.m */; };
 		28EF388414B9391A00881B01 /* Ring.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EF388314B9391A00881B01 /* Ring.m */; };
+		92B7F57F157D4A9E0085F5AE /* LevelOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F57E157D4A9E0085F5AE /* LevelOptions.m */; };
+		92BC7FA9157B78360087A0C5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BC7FA8157B78360087A0C5 /* GameKit.framework */; };
+		92C4E0E8157BC673001E661E /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C4E0E7157BC673001E661E /* GameCenterManager.m */; };
 		92C9813815399AC1007AD445 /* Pause-Green-Button-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */; };
 		92C9813B1539CB32007AD445 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C9813A1539CB32007AD445 /* Level.m */; };
 		92F0E739153976C300AE13BF /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F0E738153976C300AE13BF /* Default-Landscape@2x~ipad.png */; };
@@ -73,6 +76,12 @@
 		28EF388214B9391A00881B01 /* Ring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ring.h; sourceTree = "<group>"; };
 		28EF388314B9391A00881B01 /* Ring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ring.m; sourceTree = "<group>"; };
 		28EF388614B9504C00881B01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = config.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		92B7F57D157D4A9E0085F5AE /* LevelOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOptions.h; sourceTree = "<group>"; };
+		92B7F57E157D4A9E0085F5AE /* LevelOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelOptions.m; sourceTree = "<group>"; };
+		92BC7FA8157B78360087A0C5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		92C4E0E6157BC673001E661E /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		92C4E0E7157BC673001E661E /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		92C4E0E9157BCE5A001E661E /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
 		92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-Green-Button-icon.png"; sourceTree = "<group>"; };
 		92C981391539CB32007AD445 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		92C9813A1539CB32007AD445 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Level.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -84,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BC7FA9157B78360087A0C5 /* GameKit.framework in Frameworks */,
 				282FD37914B8E9BB002195D4 /* UIKit.framework in Frameworks */,
 				282FD37B14B8E9BB002195D4 /* Foundation.framework in Frameworks */,
 				282FD37D14B8E9BB002195D4 /* CoreGraphics.framework in Frameworks */,
@@ -97,6 +107,7 @@
 		282FD36914B8E9BB002195D4 = {
 			isa = PBXGroup;
 			children = (
+				92BC7FA8157B78360087A0C5 /* GameKit.framework */,
 				92F0E738153976C300AE13BF /* Default-Landscape@2x~ipad.png */,
 				284D568814C3263E00B76398 /* Ressources */,
 				28EF388514B9503700881B01 /* Configs */,
@@ -132,6 +143,9 @@
 		282FD38014B8E9BB002195D4 /* Boule2 */ = {
 			isa = PBXGroup;
 			children = (
+				92C4E0E9157BCE5A001E661E /* AppSpecificValues.h */,
+				92C4E0E6157BC673001E661E /* GameCenterManager.h */,
+				92C4E0E7157BC673001E661E /* GameCenterManager.m */,
 				282FD38914B8E9BB002195D4 /* AppDelegate.h */,
 				282FD38A14B8E9BB002195D4 /* AppDelegate.m */,
 				282FD38C14B8E9BB002195D4 /* Boule2.xcdatamodeld */,
@@ -214,6 +228,8 @@
 				28EF388314B9391A00881B01 /* Ring.m */,
 				92C981391539CB32007AD445 /* Level.h */,
 				92C9813A1539CB32007AD445 /* Level.m */,
+				92B7F57D157D4A9E0085F5AE /* LevelOptions.h */,
+				92B7F57E157D4A9E0085F5AE /* LevelOptions.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -311,6 +327,8 @@
 				285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */,
 				284D567A14C20B5700B76398 /* NavigationController.m in Sources */,
 				92C9813B1539CB32007AD445 /* Level.m in Sources */,
+				92C4E0E8157BC673001E661E /* GameCenterManager.m in Sources */,
+				92B7F57F157D4A9E0085F5AE /* LevelOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +409,7 @@
 				GCC_PREFIX_HEADER = "Boule2/Boule2-Prefix.pch";
 				INFOPLIST_FILE = "Boule2/Boule2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,6 +421,7 @@
 				GCC_PREFIX_HEADER = "Boule2/Boule2-Prefix.pch";
 				INFOPLIST_FILE = "Boule2/Boule2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

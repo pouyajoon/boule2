@@ -7,21 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 #import "GameController.h"
+#import "GameCenterManager.h"
 #import "NavigationController.h"
 
-@interface RootViewController : UIViewController <UIAccelerometerDelegate>{
+@interface RootViewController : UIViewController <UIAccelerometerDelegate, GameCenterManagerDelegate, GKLeaderboardViewControllerDelegate>{
     IBOutlet UIButton *BPlay;    
     IBOutlet UIButton *BExit;    
     IBOutlet UIButton *BBestScore;
-    IBOutlet UILabel *highScoreLabelText;
-    IBOutlet UILabel *highScoreLabel;    
+    
+    GameCenterManager* gameCenterManager;
 }
 
 -(IBAction)play: (id)sender;
 -(IBAction)BAexit: (id)sender;
+-(IBAction)BABestScore: (id)sender;
 -(void)initView;
--(void)setHighScore;
 
 @end
 

@@ -9,15 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "Ring.h"
+#import "LevelOptions.h" 
 
 @interface Level : NSObject{
-    int ringSizeFromBoule;
-    int ringSizeFromBouleRandomDistribution;
-    int timeBetweenRing;
-    int timeBetweenRingRandomDistribution;
+    
+    LevelOptions *options;
+//    int ringSizeFromBoule;
+//    int ringSizeFromBouleRandomDistribution;
+//    int timeBetweenRing;
+//    int timeBetweenRingRandomDistribution;
+//    int ringLife;
+    int levelNumber;
+    int initRingSizeFromBoule;
+    int initTimeBetweenRing;
+    int initRingLife;
 }
--(Level*)initWithOptions:(int)_ringSizeFromBoule ringSizeFromBouleRandomDistribution:(int)_ringSizeFromBouleRandomDistribution timeBetweenRing:(int)_timeBetweenRing timeBetweenRingRandomDistribution:(int)_timeBetweenRingRandomDistribution;
--(Ring*)getRingWithMinimumSize:(CGSize)minimumSize canvasSize:(CGSize)canvasSize;
+
+-(NSString*) getLevelNumber;
+-(Level*)initWithOptions:(LevelOptions*)_options;
+-(Ring*)getRingWithMinimumSize:(UIImageView *)boule canvasSize:(CGSize)canvasSize;
 -(int)getRingTimer;
 -(void) updateLevel;
+-(int) getDifficultyPercentage;
+-(void)reset;
 @end

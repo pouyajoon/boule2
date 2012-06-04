@@ -20,13 +20,8 @@
     return self;
 }
 
--(void)setHighScore{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSInteger hScore = [prefs integerForKey:KEEP_HIGHSCORE_KEY];
-    [highScoreLabel setText:[NSString stringWithFormat:@"%d", hScore]];
-}
 
--(int)getHighScore{
+-(int)getHighScoreLocal{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     return [prefs integerForKey:KEEP_HIGHSCORE_KEY];
 }
@@ -40,28 +35,49 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    float accelX = roundf(acceleration.x * 1000) / 1000;
-    float accelY = roundf(acceleration.y * 1000) / 1000;
-    
-    float xx = -accelX;
-	float yy = accelY;
-	float angle = atan2(yy, xx) + M_PI / 2;
+    float angle = [GameController getAngleFromAcceleration:acceleration];
     
     BPlay.transform = CGAffineTransformMakeRotation(angle);
     BExit.transform = CGAffineTransformMakeRotation(angle);
     BBestScore.transform = CGAffineTransformMakeRotation(angle);
 }
 
+#pragma mark GameCenter View Controllers
+- (void) showLeaderboard;
+{
+	GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+	if (leaderboardController != NULL) 
+	{
+		leaderboardController.category = GAMECENTER_LB_CATEGORY;
+		leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+		leaderboardController.leaderboardDelegate = self; 
+		[self presentModalViewController: leaderboardController animated: YES];
+	}
+}
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+
+{
+    [self dismissModalViewControllerAnimated:YES];    
+}
+
+-(IBAction)BABestScore: (id)sender{
+    [self showLeaderboard];
+    //   [((NavigationController *)self.navigationController) setHighScore];
+}
+
 #pragma mark - View lifecycle
+
+
+-(void) setAccelerometer{
+    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/12.0];
+    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+}
 
 - (void)viewDidLoad
 {
     // Do any additional setup after loading the view from its nib.
-
-    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/30.0];
-    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-    
     [self initView];
     [super viewDidLoad];
 }
@@ -83,11 +99,50 @@
     // Override point for customization after application launch.
     [((NavigationController *)self.navigationController) setGame];
 }
--(IBAction)BAexit: (id)sender{
+-(IBAction)BAexit: (id)sender{    
     exit(1);
 }
 
+
+- (void) processGameCenterAuth: (NSError*) error
+{
+	if(error == NULL)
+	{
+		[gameCenterManager reloadHighScoresForCategory: GAMECENTER_LB_CATEGORY];
+	}
+	else
+	{
+		UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: @"Game Center Account Required" 
+                                                        message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]
+                                                       delegate: self cancelButtonTitle: @"Try Again..." otherButtonTitles: NULL] autorelease];
+		[alert show];
+	}
+	
+}
+
+
+
+- (void) reloadScoresComplete: (GKLeaderboard*) leaderBoard error: (NSError*) error;
+{
+    int64_t personalBest= leaderBoard.localPlayerScore.value;
+    [self updateHighScoreText : personalBest];
+
+}
+
+
+-(void) updateHighScoreText:(int64_t) highscore{
+//    int highscore = [self getHighScore];
+    BBestScore.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+    BBestScore.titleLabel.textAlignment = UITextAlignmentCenter;
+    NSString *hs = [NSString stringWithFormat:@"%@\n%d",NSLocalizedString(@"VIEW_ROOT_L_HIGHSCORE", nil), highscore];
+    [BBestScore setTitle:hs forState:UIControlStateNormal];
+
+}
+
+
 -(void) initView{
+    [self setAccelerometer];
+
     NavigationController *nv = (NavigationController *)self.navigationController;
     if (nv.gameController == nil){
         [BPlay setTitle:NSLocalizedString(@"VIEW_ROOT_B_PLAY", nil) forState:0 ];
@@ -96,13 +151,17 @@
         [BPlay setTitle:NSLocalizedString(@"VIEW_ROOT_B_RESUME", nil) forState:0 ]; 
     }
     
-    BBestScore.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
-    BBestScore.titleLabel.textAlignment = UITextAlignmentCenter;
-    NSString *hs = [NSString stringWithFormat:@"%@\n%d",NSLocalizedString(@"VIEW_ROOT_L_HIGHSCORE", nil), [self getHighScore]];
-    [BBestScore setTitle:hs forState:UIControlStateNormal];
+    [self updateHighScoreText : [self getHighScoreLocal]];
     [BExit setTitle:NSLocalizedString(@"VIEW_ROOT_B_EXIT", nil) forState:0 ]; 
-
+    
+    
+    gameCenterManager = [GameCenterManager getGameCenterManager:self];
+    if (gameCenterManager != nil){
+        [gameCenterManager reloadHighScoresForCategory:GAMECENTER_LB_CATEGORY];
+    }
+    
 }
+
 
 
 @end

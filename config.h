@@ -17,7 +17,7 @@
 
 #define START_LIFE 5
 #define GAME_LIFE_MARGIN 2
-#define GAME_LIFE_SIZE 24
+#define GAME_LIFE_SIZE 22
 #define GAME_RING_MOVE 8
 #define GAME_RING_REDUCE 4
 
@@ -31,6 +31,7 @@
 
 #define KEEP_HIGHSCORE_KEY @"HighScore"
 
+#define GAMECENTER_LB_CATEGORY @"highscore"
 
 
 #endif

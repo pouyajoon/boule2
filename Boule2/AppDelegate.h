@@ -10,7 +10,7 @@
 #import "GameController.h"
 #import "RootViewController.h"
 #import "NavigationController.h"
-
+#import "GameCenterManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
 //    UIWindow *window;

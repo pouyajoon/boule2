@@ -10,6 +10,7 @@
 #import "config.h"
 #import "Ring.h"
 #import "Level.h"
+#import "GameCenterManager.h"
 
 
 typedef enum{
@@ -17,14 +18,28 @@ typedef enum{
     waitingToRestart
 }EgameState;
 
-@interface GameController : UIViewController <UIAccelerometerDelegate>{
+@interface GameController : UIViewController <UIAccelerometerDelegate, GameCenterManagerDelegate>{
     IBOutlet UIImageView *boule;
     IBOutlet UILabel *incScoreLabel;
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *gameOverLabel;
     IBOutlet UIButton *BRestart;
     IBOutlet UIButton *BHome;
+    
+    IBOutlet UILabel *labelLevel;
+    IBOutlet UILabel *labelLevelValue;
+    IBOutlet UILabel *labelRings;
+    IBOutlet UILabel *labelRingsValue;
+    IBOutlet UILabel *labelDifficulty;
+    IBOutlet UILabel *labelDifficultyValue;
+    IBOutlet UIButton *BNotification;
 
+    
+    int accelerometeCount;
+    int bouleMove;
+    
+    GameCenterManager *gameCenterManager;
+    
     int ringsCatched;
     NSMutableArray *rings;
     NSMutableArray *deadRings;
@@ -41,6 +56,8 @@ typedef enum{
 
 }
 
+-(void) resumeGame;
++(float) getAngleFromAcceleration:(UIAcceleration *)acceleration;
 -(void) startTimer;
 -(void) pauseTimer;
 -(void) initTimer;
@@ -51,6 +68,8 @@ typedef enum{
 -(BOOL) isBouleDead;
 -(IBAction)BARestart:(id)sender;
 -(IBAction)BAHome:(id)sender;
+-(IBAction)BANotification:(id)sender;
+
 -(void) updateScoreLabel:(int)score;
 -(void) initGame;
 

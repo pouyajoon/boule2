@@ -2,7 +2,7 @@
 //  Ring.m
 //  Boule2
 //
-//  Created by Aurelien Gasser on 1/8/12.
+//  Created by Pouya Mohtacham on 1/8/12.
 //  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 

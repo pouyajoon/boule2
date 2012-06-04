@@ -2,7 +2,7 @@
   Localizable.strings
   Boule2
 
-  Created by Aurelien Gasser on 1/15/12.
+  Created by Pouya Mohtacham on 1/15/12.
   Copyright (c) 2012 origamix.fr. All rights reserved.
 */
 
@@ -12,9 +12,12 @@
 "VIEW_ROOT_B_PLAY" = "Jouer";
 "VIEW_ROOT_B_RESUME" = "Reprendre";
 "VIEW_ROOT_B_EXIT" = "Quitter";
-"VIEW_ROOT_L_HIGHSCORE" = "Meilleur score";
+"VIEW_ROOT_L_HIGHSCORE" = "Meilleure score";
 
 "VIEW_GAME_B_RESTART" = "Essaye encore";
 "VIEW_GAME_L_GAMEOVER" = "DOMMAGE !";
 "VIEW_GAME_L_SCORE" = "Score :";
 "VIEW_GAME_L_LIFES" = "Vies :";
+"VIEW_GAME_L_LEVEL" = "Niveau :";
+"VIEW_GAME_L_RINGS" = "Anneaux :";
+"VIEW_GAME_L_DIFFICULTY" = "Difficulté:";
