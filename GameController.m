@@ -7,13 +7,16 @@
 //
 
 #import "GameController.h"
-#import "Ring.h"
 #import "NavigationController.h"
+#import "AccelerometerManager.h"
+#import "Timer.h"
+
 
 @implementation GameController
 
-@synthesize boule;
-
+@synthesize hero;
+@synthesize notificationDirection;
+@synthesize BNotification;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +28,6 @@
         rings = [[NSMutableArray alloc] init];
         drawImage = [[UIImageView alloc] initWithImage:nil];
         
-        
         LevelOptions *levelOptions = [LevelOptions alloc];
         levelOptions.timeBetweenRing = 90;
         levelOptions.timeBetweenRingRandomDistribution = 0;
@@ -34,27 +36,50 @@
         levelOptions.ringSizeFromBouleRandomDistribution = 0;
         currentLevel = [[Level alloc] initWithOptions: levelOptions];
         [self initGame];
-        boule = [UIImageView alloc];
-        [boule initWithFrame:CGRectMake(0, 0, BOULE_SIZE, BOULE_SIZE)];
-           // [bould set
-        UIImage* bouleImage = [UIImage imageNamed:@"Boule.png"];
-        [boule setImage:bouleImage];
+
+        hero = [Hero alloc];
+        [hero init:self];
+        scoreManager = [[ScoreManager alloc] init];
+        accelerometerManager = [[AccelerometerManager alloc] init:self];
+        [AccelerometerManager setAccelerometer:self];
         ringsCatched = 0;
 
         [drawImage setFrame:self.view.frame];
-        [drawImage addSubview:boule];
+        [drawImage addSubview:hero.image];
         
         //labelLevel = [[UILabel alloc] autorelease];
         //labelLevelValue = [[UILabel alloc] autorelease];
         
-        
         [self.view addSubview:drawImage];
+
+        timer = [Timer alloc];
+        [timer init:self];        
+        [timer initTimer];
         
-        [self initTimer];
+         [self showAlertWithTitle:@"Nice!" message:@""];
     }
     return self;
 }
 
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    [accelerometerManager accelerometer:accelerometer didAccelerate:acceleration];
+}
+
+-(void)tick{    
+    int ringTimer = [currentLevel getRingTimer];
+    if (gameState == playing){
+        if (([timer timerCount] % ringTimer) == 0)
+        {
+            [self createRandomRing];
+        }
+    }    
+    [self reduceScoreLabelTime];
+    [self live];
+    [self draw];
+    [self updateLabels];
+    [self decreaseNotificationTimer];
+}
 
 -(CGPoint) getLifePosition:(int)position{
     return CGPointMake(GAME_LIFE_MARGIN + position * GAME_LIFE_MARGIN + position * GAME_LIFE_SIZE, GAME_LIFE_MARGIN);
@@ -88,7 +113,6 @@
     UIGraphicsEndImageContext();
 }
 
-
 -(void) setRingsToAlphaHidding{
     for (int i = 0; i < rings.count; i++) {
         Ring *ring = [rings objectAtIndex:i];
@@ -104,8 +128,6 @@
     [currentLevel reset];
     [self drawLevel];
     ringsCatched = 0;
-    [self updateCatchedRingsLabel];
-    
 }
 
 - (void) gameOver
@@ -115,7 +137,7 @@
     gameState = waitingToRestart;
     [gameOverLabel setHidden:NO];
     [BRestart setHidden:NO];
-    bouleMove = 20;
+    hero.bouleMove = 20;
     [self updateHighScore];
     [self resetLevel];
     NSLog(@"game over");  
@@ -123,10 +145,32 @@
 
 }
 
+-(void) decreaseNotificationTimer{
+    if (BNotification.isHidden){
+        return;
+    }
+    notificationTimer -= 1;
+    if (notificationTimer < 0){
+        BNotification.hidden = YES;
+    }
+    BNotification.frame = CGRectMake(BNotification.frame.origin.x + 2.5, BNotification.frame.origin.y, BNotification.frame.size.width, BNotification.frame.size.height);
+}
+
 - (void) showAlertWithTitle: (NSString*) title message: (NSString*) message
 {
+    notificationTimer = 240;
     [BNotification setTitle:title forState:UIControlStateNormal];
     BNotification.hidden = NO;
+    
+    int r = rand();
+    
+    int y = GAME_VIEW_BORDER + fmod(r, (self.view.frame.size.height - GAME_VIEW_BORDER));
+    int x = -BNotification.frame.size.width;
+    
+//    if (notificationDirection.x > 0){
+//        x = self.view.frame.size.width;
+//    }
+    BNotification.frame = CGRectMake(x, y, BNotification.frame.size.width, BNotification.frame.size.height);
     
 //    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 50)];
 //    [l setText:@"yeahhh"]; 
@@ -172,54 +216,55 @@
 }
 
 
+
+
 -(IBAction)BAHome:(id)sender{
     [((NavigationController *)self.navigationController) popViewControllerAnimated:YES];
 }
 
--(void) bouleLooseLife{
-    life--;             
-    if ([self isBouleDead])
-    {
-        [self gameOver];                
-    } 
-}
 
--(void) bouleIsInsideRing:(Ring*)ring{
-    
-    [self increaseRingsCatchedNumber];
-
-    // set score
-    incScoreTimeleft = 60;
-    
-    //CGRect frame = incScoreLabel.frame;
-    //frame.origin = CGPointMake(boule.frame.origin.x, boule.frame.origin.y);
-    //incScoreLabel.frame = frame;
-
-    int score = [scoreLabel.text intValue];
-    // define score
-    
-    float rCur = ring.lifeCur;
-    float rMax = ring.lifeMax;
-    
-    float ratioLife = rCur / rMax;
-    int diffSize = 150 - (ring.frame.size.width - BOULE_SIZE);
-    
-    int score_incr = floor(ratioLife * diffSize);
-    
-    score += floor(score_incr);
+-(void) updateIncScoreLabel:(int)score_incr withRing:(Ring*)ring{
     [incScoreLabel setText:[NSString stringWithFormat:@"+%d", score_incr]]; 
     [incScoreLabel setTextColor:[ring getColor]];
-    incScoreLabel.center = CGPointMake(boule.frame.origin.x, boule.frame.origin.y);
+    incScoreLabel.center = CGPointMake(hero.image.frame.origin.x, hero.image.frame.origin.y);    
+}
 
+
+-(void) updateIncScore:(Ring*)ring{
     
-    [self updateScoreLabel:score];
+    // define inc score    
     
+    int score_incr = floor(([currentLevel getDifficultyPercentage] + 1) * BOULE_SIZE + rand() % 25);
+    float ringLifeRatio = (ring.lifeCur / (float)ring.lifeMax);
+    score_incr = score_incr * ringLifeRatio;
+    score_incr /= 10;
+    [self updateIncScoreLabel:score_incr withRing:ring];
     
-    [incScoreLabel setHidden:NO];  
+    // set score timer & show it
+    incScoreTimeleft = 60;    
+    [incScoreLabel setHidden:NO];
+        
+    scoreManager.score += score_incr;    
+}
+
+
+-(void) updateLabels{
+    [labelRingsValue setText:[NSString stringWithFormat:@"%d", ringsCatched]];   
+    [scoreLabel setText:[NSString stringWithFormat:@"%d", scoreManager.score]];
+
+}
+
+
+-(void) checkAndLevelUpIfRequired{
     if (ringsCatched % 10 == 0){
         [self increaseLevel];
     }
-    
+}
+
+-(void) bouleIsInsideRing:(Ring*)ring{
+    [self increaseRingsCatchedNumber];
+    [self updateIncScore:ring];
+    [self checkAndLevelUpIfRequired];
 }
 
 -(void)drawLevel{
@@ -235,12 +280,8 @@
 
 -(void) increaseRingsCatchedNumber{
     ringsCatched += 1;  
-    [self updateCatchedRingsLabel];
 }
 
--(void)updateCatchedRingsLabel{
-    [labelRingsValue setText:[NSString stringWithFormat:@"%d", ringsCatched]];   
-}
 
 - (void) live
 {
@@ -254,7 +295,7 @@
     for (int i = 0; i < rings.count; i++) {
         Ring* ring = [rings objectAtIndex:i];
         
-        CGPoint destination = [self getLifePosition:life - 1];
+        CGPoint destination = [self getLifePosition:hero.life - 1];
         switch (ring.ringState) {
             case onLifeScore:
                 drawLifes -= 1;
@@ -262,13 +303,14 @@
             case notCatched:
                 [ring setDestination:destination];
                 [self bouleLooseLife];
-//                [self bouleIsInsideRing:ring];
-                
+               
+
+//                [self bouleIsInsideRing:ring];                
 //                ring.ringState = growToDie;
                 break;
                 
             case living:
-                if ([ring isAroundRect:self.boule.frame]){
+                if ([ring isAroundRect:hero.image.frame]){
                     [self bouleIsInsideRing:ring];
                     
                     ring.ringState = growToDie;
@@ -282,10 +324,6 @@
     }
 }
 
-
--(void) updateScoreLabel:(int)score{
-    [scoreLabel setText:[NSString stringWithFormat:@"%d", score]];
-}
 
 - (void) processGameCenterAuth: (NSError*) error
 {
@@ -307,13 +345,12 @@
     gameState = playing;
     drawLifes = START_LIFE;
     [rings removeAllObjects];
-    [self updateScoreLabel:0];
     [gameOverLabel setHidden:YES];
     [BRestart setHidden:YES];
-    life = START_LIFE;
-    timerCount = 0;
-    bouleMove = 100;
-    [self startTimer];
+    hero.life = START_LIFE;
+    [timer resetTimer];
+    hero.bouleMove = 100;
+    [timer startTimer];
     [self updateHighScore];
 }
 
@@ -327,92 +364,36 @@
 
 - (void) createRandomRing{   
 
-    Ring *ring = [currentLevel getRingWithMinimumSize:boule canvasSize:drawImage.frame.size];    
+    Ring *ring = [currentLevel getRingWithMinimumSize:hero canvasSize:drawImage.frame.size];    
     [rings addObject:ring];
 }
 
-- (void)moveBoule:(int)x withY:(int)y {
-    [boule setFrame:CGRectMake(x, y, boule.frame.size.width, boule.frame.size.height)];
-}
+
 
 +(float) getAngleFromAcceleration:(UIAcceleration *)acceleration{
     float accelXangle = roundf(acceleration.x * 1000) / 1000;
     float accelYangle = roundf(acceleration.y * 1000) / 1000;
-
+    
     float xx = -accelXangle;
     float yy = accelYangle;
     float angle = atan2(yy, xx) + M_PI / 2;
     return angle;
 }
 
--(void) setAccelerometer{
-    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/36.0];
-    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-    accelerometeCount = 0;
+
+-(void) updateDynamicControlsAngle:(int)angle{
+    incScoreLabel.transform = CGAffineTransformMakeRotation(angle);    
 }
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    const float kFilteringFactor = 0.5;
-    static float accelX = 0;
-    static float accelY = 0;
-    static float accelZ = 0;
-    
-    accelX = (acceleration.x * kFilteringFactor) + (accelX * (1.0 - kFilteringFactor));
-    accelY = (acceleration.y * kFilteringFactor) + (accelY * (1.0 - kFilteringFactor));
-    accelZ = (acceleration.z * kFilteringFactor) + (accelZ * (1.0 - kFilteringFactor));
-    float x = accelX * bouleMove + boule.frame.origin.x ;
-    float y = -accelY * bouleMove + boule.frame.origin.y;
-    [self checkBoulePositionIsCorrectAndMoveWithX:x withY:y];
 
-    float angle = [GameController getAngleFromAcceleration:acceleration];
-
-    if (accelerometeCount % 2 == 0){
-        incScoreLabel.transform = CGAffineTransformMakeRotation(angle);    
-    }
-    if (accelerometeCount % 3 == 0){
-        
-        BRestart.transform = CGAffineTransformMakeRotation(angle);
-        gameOverLabel.transform = CGAffineTransformMakeRotation(angle);
-        BNotification.transform = CGAffineTransformMakeRotation(angle);
-//        labelLevelValue.transform = CGAffineTransformMakeRotation(angle);
-//        labelRingsValue.transform = CGAffineTransformMakeRotation(angle);
-
-    }
-    
-    accelerometeCount += 1;
-}
-
--(void)checkBoulePositionIsCorrectAndMoveWithX:(float)x withY:(int)y{
-    if (x < 0) { 
-        x = 0;
-    }
-    if (y < 26) { 
-        y = 26;
-    }
-    if (x + boule.frame.size.width > self.view.frame.size.width)
-    {
-        x =  self.view.frame.size.width - boule.frame.size.width;
-    }
-    if (y + boule.frame.size.height > self.view.frame.size.height - 26)
-    {
-        y =  self.view.frame.size.height - boule.frame.size.height  - 26;
-    }
-    [self moveBoule:x withY:y];    
+-(void) updateStaticControlsAngle:(int)angle{
+    BRestart.transform = CGAffineTransformMakeRotation(angle);
+    gameOverLabel.transform = CGAffineTransformMakeRotation(angle);
+    //BNotification.transform = CGAffineTransformMakeRotation(angle);
 
 }
 
 
--(void)initView{
-    [self setAccelerometer];
-    [BRestart setTitle:NSLocalizedString(@"VIEW_GAME_B_RESTART", nil) forState:0 ];
-    [gameOverLabel setText:NSLocalizedString(@"VIEW_GAME_L_GAMEOVER", nil)];
-    [labelLevel setText:NSLocalizedString(@"VIEW_GAME_L_LEVEL", nil)];
-    [labelLevelValue setText:@"0"];
-    [labelRings setText:NSLocalizedString(@"VIEW_GAME_L_RINGS", nil)];
-    [labelRingsValue setText:@"0"];
-    [labelDifficulty setText:NSLocalizedString(@"VIEW_GAME_L_DIFFICULTY", nil)];
-    [labelDifficultyValue setText:@"0%"];
-}
 
 
 - (void)didReceiveMemoryWarning
@@ -423,67 +404,18 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [incScoreLabel setHidden:YES];
-    //[self moveBoule:20 withY:20];
-}
-
 
 -(void) resumeGame{
-    [self setAccelerometer];
-    [self startTimer];
+    //[accelerometerManager setAccelerometer:self];
+    [timer startTimer];
 }
 
 
-
-#pragma mark - View lifecycle
-- (void)viewDidLoad {    
-    NSLog(@"View Loaded");
-    [super viewDidLoad];
-    [self initView];
-}
-
--(BOOL) isBouleDead {
-    return life <= 0;
-}
-
-- (void) pauseTimer{
-    timerIsEnabled = NO;
-}
-
-- (void) startTimer{
-    if (life <= 0) return;
-    timerIsEnabled = YES;
-}
-
-- (void) initTimer
-{
-    timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_RING target:self selector:@selector(increaseTimerCount) userInfo:nil repeats:YES];
-    [self startTimer];
-    [timer fire];
-}
-
-- (void) increaseTimerCount
-{
-    if (timerIsEnabled == NO) 
-    {
-        return;
+-(void) bouleLooseLife{
+    [hero looseLife];
+    if ([hero isDead]){
+        [self gameOver];                
     }
-
-    int ringTimer = [currentLevel getRingTimer];
-    if (gameState == playing){
-        if ((timerCount % ringTimer) == 0)
-        {
-//            NSLog(@"timer for ring :%d", timerCount);
-            [self createRandomRing];
-        }
-    }
-    
-    [self reduceScoreLabelTime];
-    [self live];
-    [self draw];
-    timerCount++;
 }
 
 
@@ -496,6 +428,35 @@
         [incScoreLabel setHidden:YES];
     }
 }
+
+#pragma mark - View lifecycle
+
+
+
+-(void)initView{
+//    [accelerometerManager setAccelerometer:self];
+    [BRestart setTitle:NSLocalizedString(@"VIEW_GAME_B_RESTART", nil) forState:0 ];
+    [gameOverLabel setText:NSLocalizedString(@"VIEW_GAME_L_GAMEOVER", nil)];
+    [labelLevel setText:NSLocalizedString(@"VIEW_GAME_L_LEVEL", nil)];
+    [labelLevelValue setText:@"0"];
+    [labelRings setText:NSLocalizedString(@"VIEW_GAME_L_RINGS", nil)];
+    [labelRingsValue setText:@"0"];
+    [labelDifficulty setText:NSLocalizedString(@"VIEW_GAME_L_DIFFICULTY", nil)];
+    [labelDifficultyValue setText:@"0%"];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [incScoreLabel setHidden:YES];
+    //[self moveBoule:20 withY:20];
+}
+
+- (void)viewDidLoad {    
+    NSLog(@"View Loaded");
+    [super viewDidLoad];
+    [self initView];
+}
+
 
 - (void) viewDidUnload
 {
@@ -513,13 +474,10 @@
 
 - (void) dealloc{
     NSLog(@"destroy game");
-    [boule release];
+    [hero release];
     [rings release];
     [drawImage release];
-    //[timer invalidate];
-    //[timer release];
     [super dealloc];
-
 }
 
 @end

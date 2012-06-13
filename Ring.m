@@ -16,8 +16,6 @@
 @synthesize lifeCur;
 @synthesize ringState;
 
-//@synthesize strokeThickness;
-
 -(Ring*)initWithFrame:(CGRect)_frame life:(int)_life
 {
     self.lifeMax = _life;
@@ -102,18 +100,16 @@
     
     if (ringState == redGrowing){
         CGContextSetLineWidth(context, 1);
-
+        
         CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
         CGContextAddEllipseInRect(context, frame);
         CGContextFillPath(context);    
-
+        
         int greenZoneSize = GAME_LIFE_SIZE - redZoneSize / 2;
         CGRect greenRect = CGRectMake(frame.origin.x + greenZoneSize, frame.origin.y + greenZoneSize, frame.size.width - 2 * greenZoneSize, frame.size.height - 2 * greenZoneSize);
-//        if (greenRect.size.width  0 && greenRect.size.height > 0){
-            CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-            CGContextAddEllipseInRect(context, greenRect);
-            CGContextFillPath(context);
-//        }
+        CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+        CGContextAddEllipseInRect(context, greenRect);
+        CGContextFillPath(context);
     }
 }
 

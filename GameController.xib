@@ -42,7 +42,7 @@
 						<string key="NSFrame">{{12, 48}, {107, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="500587378"/>
+						<reference key="NSNextKeyView" ref="781293768"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -77,7 +77,7 @@
 						<string key="NSFrame">{{58, 89}, {208, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="955071850"/>
+						<reference key="NSNextKeyView" ref="338270936"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -111,7 +111,7 @@
 						<string key="NSFrame">{{83, 249}, {155, 156}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="978454034"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -123,7 +123,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwLjUgMAA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="146549192">
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
@@ -146,10 +146,10 @@
 					<object class="IBUIButton" id="338270936">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{12, 188}, {293, 37}}</string>
+						<string key="NSFrame">{{58, 178}, {207, 63}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="781293768"/>
+						<reference key="NSNextKeyView" ref="955071850"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -162,18 +162,21 @@
 						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAwLjQwMDAwMDAwNiAxAA</bytes>
+							<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuNDAwMDAwMDA2IDEAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="146549192"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAxAA</bytes>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">TrebuchetMS-Bold</string>
-							<string key="family">Trebuchet MS</string>
-							<int key="traits">2</int>
-							<double key="pointSize">24</double>
+							<string key="name">PartyLetPlain</string>
+							<string key="family">Party LET</string>
+							<int key="traits">0</int>
+							<double key="pointSize">59</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">TrebuchetMS-Bold</string>
-							<double key="NSSize">24</double>
+							<string key="NSName">PartyLetPlain</string>
+							<double key="NSSize">59</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -183,7 +186,7 @@
 						<string key="NSFrameSize">{320, 26}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="338270936"/>
+						<reference key="NSNextKeyView" ref="362438929"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="862706333">
 							<int key="NSColorSpace">1</int>
@@ -215,6 +218,7 @@
 						<string key="NSFrame">{{0, 434}, {320, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="572977551"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="862706333"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -236,6 +240,7 @@
 						<string key="NSFrame">{{294, -2}, {26, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1002951677"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -427,7 +432,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="500587378"/>
 				<reference key="IBUIBackgroundColor" ref="578353162"/>
 				<int key="IBUIContentMode">3</int>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
@@ -585,7 +590,6 @@
 							<reference ref="955071850"/>
 							<reference ref="1002951677"/>
 							<reference ref="781293768"/>
-							<reference ref="338270936"/>
 							<reference ref="500587378"/>
 							<reference ref="964115485"/>
 							<reference ref="362438929"/>
@@ -596,6 +600,7 @@
 							<reference ref="614723034"/>
 							<reference ref="572977551"/>
 							<reference ref="919770140"/>
+							<reference ref="338270936"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -738,7 +743,6 @@
 						<string key="BHome">UIButton</string>
 						<string key="BNotification">UIButton</string>
 						<string key="BRestart">UIButton</string>
-						<string key="boule">UIImageView</string>
 						<string key="gameOverLabel">UILabel</string>
 						<string key="incScoreLabel">UILabel</string>
 						<string key="labelDifficulty">UILabel</string>
@@ -761,10 +765,6 @@
 						<object class="IBToOneOutletInfo" key="BRestart">
 							<string key="name">BRestart</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="boule">
-							<string key="name">boule</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="gameOverLabel">
 							<string key="name">gameOverLabel</string>

@@ -83,8 +83,8 @@
         if ([self.topViewController isMemberOfClass:[GameController class]]) {
             self.gameController = (GameController*)[self visibleViewController];
             [super popToRootViewControllerAnimated:YES];            
-            [self.gameController pauseTimer];
-            if ([self.gameController isBouleDead])
+            //[self.gameController pauseTimer];
+            if ([self.gameController.hero isDead])
             {
                 self.gameController = nil;
             }

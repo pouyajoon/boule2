@@ -6,20 +6,25 @@
 //  Copyright (c) 2012 origamix.fr. All rights reserved.
 //
 
+#ifndef GAMECONTROLLER_H
+#define GAMECONTROLLER_H
+
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "Ring.h"
 #import "Level.h"
 #import "GameCenterManager.h"
-
+#import "ScoreManager.h"
+#import "Hero.h"
+#import "AccelerometerManager.h"
+@class Timer;
 
 typedef enum{
     playing,
     waitingToRestart
 }EgameState;
 
-@interface GameController : UIViewController <UIAccelerometerDelegate, GameCenterManagerDelegate>{
-    IBOutlet UIImageView *boule;
+@interface GameController : UIViewController <GameCenterManagerDelegate, UIAccelerometerDelegate>{
     IBOutlet UILabel *incScoreLabel;
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *gameOverLabel;
@@ -33,10 +38,14 @@ typedef enum{
     IBOutlet UILabel *labelDifficulty;
     IBOutlet UILabel *labelDifficultyValue;
     IBOutlet UIButton *BNotification;
-
+    int notificationTimer;
+    CGPoint notificationDirection;
     
-    int accelerometeCount;
-    int bouleMove;
+    Hero *hero;
+    ScoreManager *scoreManager;
+    AccelerometerManager *accelerometerManager;
+    
+    Timer *timer;
     
     GameCenterManager *gameCenterManager;
     
@@ -44,36 +53,39 @@ typedef enum{
     NSMutableArray *rings;
     NSMutableArray *deadRings;
     UIImageView *drawImage;
-    NSTimer *timer;
-    int life;
     int incScoreTimeleft;
-    BOOL timerIsEnabled;
     Level *currentLevel;
-    int timerCount;
     EgameState gameState;
     int drawLifes;
     int difficultyPourcentage;
+    
 
 }
 
+-(void)tick;
+
+//-(void) accelerometerTick:(int)accelerometerCount withAccelX:(float)accelX withAccelY:(float)accelY withAcceleration:(UIAcceleration*)acceleration;
 -(void) resumeGame;
 +(float) getAngleFromAcceleration:(UIAcceleration *)acceleration;
--(void) startTimer;
--(void) pauseTimer;
--(void) initTimer;
 -(void) createRandomRing;
 -(void) draw;
 -(void) live;
 -(void) gameOver;
--(BOOL) isBouleDead;
 -(IBAction)BARestart:(id)sender;
 -(IBAction)BAHome:(id)sender;
 -(IBAction)BANotification:(id)sender;
 
--(void) updateScoreLabel:(int)score;
+
+
+-(void) updateDynamicControlsAngle:(int)angle;
+-(void) updateStaticControlsAngle:(int)angle;
 -(void) initGame;
 
-@property (nonatomic, strong, retain) IBOutlet UIImageView *boule;
+@property (nonatomic, strong, retain) Hero* hero; 
+@property (nonatomic) CGPoint notificationDirection;
+@property (nonatomic, retain) IBOutlet UIButton *BNotification;
+
 
 @end
 
+#endif

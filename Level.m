@@ -71,9 +71,9 @@
     levelNumber += 1;
 }
 
--(Ring*)getRingWithMinimumSize:(UIImageView *)boule canvasSize:(CGSize)canvasSize {
-    int bw = boule.frame.size.width;
-    int bh = boule.frame.size.height;
+-(Ring*)getRingWithMinimumSize:(Hero *)hero canvasSize:(CGSize)canvasSize {
+    CGFloat bw = hero.image.frame.size.width;
+    CGFloat bh = hero.image.frame.size.height;
 
     int w =  bw + RING_STROKE_THICKNESS / 2 + options.ringSizeFromBoule;
     int h =  bh + RING_STROKE_THICKNESS / 2 + options.ringSizeFromBoule;
@@ -88,14 +88,14 @@
         _life += random() % options.timeBetweenRingRandomDistribution;
     }
     
-    int margin = 20;
+    int margin = GAME_VIEW_BORDER + RING_STROKE_THICKNESS;
     float x = fmod(random(), canvasSize.width - w - margin * 2) + margin;
     float y = fmod(random(), canvasSize.height - h - margin * 2) + margin;
     
     Ring *r = [[Ring alloc] initWithFrame:CGRectMake(x, y, w, h) life:_life];
     [r autorelease];
-    if ([r isAroundRect:boule.frame]){
-        return [self getRingWithMinimumSize:boule canvasSize:canvasSize];
+    if ([r isAroundRect:hero.image.frame]){
+        return [self getRingWithMinimumSize:hero canvasSize:canvasSize];
     }
     return r;
 }

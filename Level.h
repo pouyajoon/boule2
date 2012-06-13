@@ -10,15 +10,12 @@
 #import "config.h"
 #import "Ring.h"
 #import "LevelOptions.h" 
+#import "Hero.h"
+
 
 @interface Level : NSObject{
     
     LevelOptions *options;
-//    int ringSizeFromBoule;
-//    int ringSizeFromBouleRandomDistribution;
-//    int timeBetweenRing;
-//    int timeBetweenRingRandomDistribution;
-//    int ringLife;
     int levelNumber;
     int initRingSizeFromBoule;
     int initTimeBetweenRing;
@@ -27,7 +24,7 @@
 
 -(NSString*) getLevelNumber;
 -(Level*)initWithOptions:(LevelOptions*)_options;
--(Ring*)getRingWithMinimumSize:(UIImageView *)boule canvasSize:(CGSize)canvasSize;
+-(Ring*)getRingWithMinimumSize:(Hero *)hero canvasSize:(CGSize)canvasSize;
 -(int)getRingTimer;
 -(void) updateLevel;
 -(int) getDifficultyPercentage;

@@ -21,6 +21,8 @@
 #define GAME_RING_MOVE 8
 #define GAME_RING_REDUCE 4
 
+#define GAME_VIEW_BORDER 26
+
 
 #define BOULE_SIZE 56
 

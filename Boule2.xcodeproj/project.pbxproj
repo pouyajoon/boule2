@@ -33,7 +33,12 @@
 		285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285BEABC14C1F10E00DCF158 /* RootViewController.m */; };
 		28EF388414B9391A00881B01 /* Ring.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EF388314B9391A00881B01 /* Ring.m */; };
 		92B7F57F157D4A9E0085F5AE /* LevelOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F57E157D4A9E0085F5AE /* LevelOptions.m */; };
+		92B7F582157E809F0085F5AE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F581157E809F0085F5AE /* Game.m */; };
+		92B7F585157E81760085F5AE /* AccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F584157E81760085F5AE /* AccelerometerManager.m */; };
+		92B7F588157E825F0085F5AE /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F587157E825F0085F5AE /* Hero.m */; };
+		92B7F58B157E8A1E0085F5AE /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F58A157E8A1E0085F5AE /* ScoreManager.m */; };
 		92BC7FA9157B78360087A0C5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BC7FA8157B78360087A0C5 /* GameKit.framework */; };
+		92BDD55015892BCD00214E0F /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BDD54F15892BCD00214E0F /* Timer.m */; };
 		92C4E0E8157BC673001E661E /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C4E0E7157BC673001E661E /* GameCenterManager.m */; };
 		92C9813815399AC1007AD445 /* Pause-Green-Button-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C9813715399AC1007AD445 /* Pause-Green-Button-icon.png */; };
 		92C9813B1539CB32007AD445 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C9813A1539CB32007AD445 /* Level.m */; };
@@ -78,7 +83,17 @@
 		28EF388614B9504C00881B01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = config.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		92B7F57D157D4A9E0085F5AE /* LevelOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOptions.h; sourceTree = "<group>"; };
 		92B7F57E157D4A9E0085F5AE /* LevelOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelOptions.m; sourceTree = "<group>"; };
+		92B7F580157E809F0085F5AE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		92B7F581157E809F0085F5AE /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		92B7F584157E81760085F5AE /* AccelerometerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerManager.m; sourceTree = "<group>"; };
+		92B7F586157E825E0085F5AE /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		92B7F587157E825F0085F5AE /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
+		92B7F589157E8A1E0085F5AE /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
+		92B7F58A157E8A1E0085F5AE /* ScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManager.m; sourceTree = "<group>"; };
+		92B7F591157EA2A00085F5AE /* AccelerometerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccelerometerManager.h; sourceTree = "<group>"; };
 		92BC7FA8157B78360087A0C5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		92BDD54E15892BCD00214E0F /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		92BDD54F15892BCD00214E0F /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timer.m; sourceTree = "<group>"; };
 		92C4E0E6157BC673001E661E /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		92C4E0E7157BC673001E661E /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		92C4E0E9157BCE5A001E661E /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSpecificValues.h; path = ../../../../Downloads/GKTapper/Classes/AppSpecificValues.h; sourceTree = "<group>"; };
@@ -230,6 +245,16 @@
 				92C9813A1539CB32007AD445 /* Level.m */,
 				92B7F57D157D4A9E0085F5AE /* LevelOptions.h */,
 				92B7F57E157D4A9E0085F5AE /* LevelOptions.m */,
+				92B7F580157E809F0085F5AE /* Game.h */,
+				92B7F581157E809F0085F5AE /* Game.m */,
+				92B7F584157E81760085F5AE /* AccelerometerManager.m */,
+				92B7F591157EA2A00085F5AE /* AccelerometerManager.h */,
+				92B7F586157E825E0085F5AE /* Hero.h */,
+				92B7F587157E825F0085F5AE /* Hero.m */,
+				92B7F589157E8A1E0085F5AE /* ScoreManager.h */,
+				92B7F58A157E8A1E0085F5AE /* ScoreManager.m */,
+				92BDD54E15892BCD00214E0F /* Timer.h */,
+				92BDD54F15892BCD00214E0F /* Timer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -329,6 +354,11 @@
 				92C9813B1539CB32007AD445 /* Level.m in Sources */,
 				92C4E0E8157BC673001E661E /* GameCenterManager.m in Sources */,
 				92B7F57F157D4A9E0085F5AE /* LevelOptions.m in Sources */,
+				92B7F582157E809F0085F5AE /* Game.m in Sources */,
+				92B7F585157E81760085F5AE /* AccelerometerManager.m in Sources */,
+				92B7F588157E825F0085F5AE /* Hero.m in Sources */,
+				92B7F58B157E8A1E0085F5AE /* ScoreManager.m in Sources */,
+				92BDD55015892BCD00214E0F /* Timer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
