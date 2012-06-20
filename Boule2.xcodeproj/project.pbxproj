@@ -32,6 +32,11 @@
 		2855F1ED14C353560063CC4F /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2855F1EE14C353560063CC4F /* GameController.xib */; };
 		285BEABD14C1F10E00DCF158 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285BEABC14C1F10E00DCF158 /* RootViewController.m */; };
 		28EF388414B9391A00881B01 /* Ring.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EF388314B9391A00881B01 /* Ring.m */; };
+		927A3C4715925CD90004D6E4 /* ScoreLabelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927A3C4615925CD80004D6E4 /* ScoreLabelManager.m */; };
+		927A3C4B15925CE80004D6E4 /* ScoreLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 927A3C4A15925CE80004D6E4 /* ScoreLabel.m */; };
+		927A3C4D15925D660004D6E4 /* config.m in Sources */ = {isa = PBXBuildFile; fileRef = 927A3C4C15925D660004D6E4 /* config.m */; };
+		92807DF9158E659F00F3F29E /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 92807DF8158E659F00F3F29E /* Notification.m */; };
+		92807DFD158E6BFB00F3F29E /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92807DFC158E6BFB00F3F29E /* NotificationManager.m */; };
 		92B7F57F157D4A9E0085F5AE /* LevelOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F57E157D4A9E0085F5AE /* LevelOptions.m */; };
 		92B7F582157E809F0085F5AE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F581157E809F0085F5AE /* Game.m */; };
 		92B7F585157E81760085F5AE /* AccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B7F584157E81760085F5AE /* AccelerometerManager.m */; };
@@ -81,6 +86,15 @@
 		28EF388214B9391A00881B01 /* Ring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ring.h; sourceTree = "<group>"; };
 		28EF388314B9391A00881B01 /* Ring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ring.m; sourceTree = "<group>"; };
 		28EF388614B9504C00881B01 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = config.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		927A3C4515925CD80004D6E4 /* ScoreLabelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreLabelManager.h; sourceTree = "<group>"; };
+		927A3C4615925CD80004D6E4 /* ScoreLabelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreLabelManager.m; sourceTree = "<group>"; };
+		927A3C4915925CE80004D6E4 /* ScoreLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreLabel.h; sourceTree = "<group>"; };
+		927A3C4A15925CE80004D6E4 /* ScoreLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreLabel.m; sourceTree = "<group>"; };
+		927A3C4C15925D660004D6E4 /* config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = config.m; sourceTree = "<group>"; };
+		92807DF7158E659F00F3F29E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		92807DF8158E659F00F3F29E /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		92807DFB158E6BFB00F3F29E /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
+		92807DFC158E6BFB00F3F29E /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		92B7F57D157D4A9E0085F5AE /* LevelOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOptions.h; sourceTree = "<group>"; };
 		92B7F57E157D4A9E0085F5AE /* LevelOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelOptions.m; sourceTree = "<group>"; };
 		92B7F580157E809F0085F5AE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -255,6 +269,14 @@
 				92B7F58A157E8A1E0085F5AE /* ScoreManager.m */,
 				92BDD54E15892BCD00214E0F /* Timer.h */,
 				92BDD54F15892BCD00214E0F /* Timer.m */,
+				92807DF7158E659F00F3F29E /* Notification.h */,
+				92807DF8158E659F00F3F29E /* Notification.m */,
+				92807DFB158E6BFB00F3F29E /* NotificationManager.h */,
+				92807DFC158E6BFB00F3F29E /* NotificationManager.m */,
+				927A3C4515925CD80004D6E4 /* ScoreLabelManager.h */,
+				927A3C4615925CD80004D6E4 /* ScoreLabelManager.m */,
+				927A3C4915925CE80004D6E4 /* ScoreLabel.h */,
+				927A3C4A15925CE80004D6E4 /* ScoreLabel.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -263,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				28EF388614B9504C00881B01 /* config.h */,
+				927A3C4C15925D660004D6E4 /* config.m */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -359,6 +382,11 @@
 				92B7F588157E825F0085F5AE /* Hero.m in Sources */,
 				92B7F58B157E8A1E0085F5AE /* ScoreManager.m in Sources */,
 				92BDD55015892BCD00214E0F /* Timer.m in Sources */,
+				92807DF9158E659F00F3F29E /* Notification.m in Sources */,
+				92807DFD158E6BFB00F3F29E /* NotificationManager.m in Sources */,
+				927A3C4715925CD90004D6E4 /* ScoreLabelManager.m in Sources */,
+				927A3C4B15925CE80004D6E4 /* ScoreLabel.m in Sources */,
+				927A3C4D15925D660004D6E4 /* config.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

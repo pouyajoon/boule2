@@ -7,9 +7,11 @@
 //
 
 #import "Level.h"
-
+#import "GameController.h"
 
 @implementation Level
+
+@synthesize levelNumber;
 
 -(Level*)initWithOptions:(LevelOptions*)_options{
     
@@ -71,7 +73,7 @@
     levelNumber += 1;
 }
 
--(Ring*)getRingWithMinimumSize:(Hero *)hero canvasSize:(CGSize)canvasSize {
+-(Ring*)getRingWithMinimumSize:(Hero *)hero withGameController:(GameController *)gc {
     CGFloat bw = hero.image.frame.size.width;
     CGFloat bh = hero.image.frame.size.height;
 
@@ -89,16 +91,22 @@
     }
     
     int margin = GAME_VIEW_BORDER + RING_STROKE_THICKNESS;
-    float x = fmod(random(), canvasSize.width - w - margin * 2) + margin;
-    float y = fmod(random(), canvasSize.height - h - margin * 2) + margin;
+    float x = fmod(random(), gc.view.frame.size.width - w - margin * 2) + margin;
+    float y = fmod(random(), gc.view.frame.size.height - h - margin * 2) + margin;
     
     Ring *r = [[Ring alloc] initWithFrame:CGRectMake(x, y, w, h) life:_life];
-    [r autorelease];
+//    [r autorelease];
     if ([r isAroundRect:hero.image.frame]){
-        return [self getRingWithMinimumSize:hero canvasSize:canvasSize];
+        return [self getRingWithMinimumSize:hero withGameController:gc];
     }
+//    if ([r collideAnotherRing:gc.rings]){
+        //NSLog(@"ring collide");
+        //return [self getRingWithMinimumSize:hero withGameController:gc];    
+//    }
     return r;
 }
+
+
 
 -(int)getRingTimer{
     int r = options.timeBetweenRing;

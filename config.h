@@ -35,5 +35,13 @@
 
 #define GAMECENTER_LB_CATEGORY @"highscore"
 
-
 #endif
+
+@interface config : NSObject {
+}
+
++(UIFont*) getFontNotification;
++(UIFont*) getFontScoreLabel;
++(UIFont*) getFontWithSize:(double)fontSize;
+
+@end

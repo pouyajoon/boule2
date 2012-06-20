@@ -30,6 +30,17 @@
 }
 
 
+-(BOOL)collideAnotherRing:(NSMutableArray *)rings{
+    for (int i = 0; i < rings.count;++i){
+        Ring* r1 = [rings objectAtIndex:i];
+        if (CGRectIntersectsRect(r1.frame, frame)){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+
 -(BOOL)isAroundRect:(CGRect)boule
 {
     float rayonBoule = 0.5 * boule.size.width;
@@ -196,6 +207,10 @@
 }
 
 
+-(CGPoint)getMiddle{
+    return CGPointMake(frame.origin.x + frame.size.width / 2, frame.origin.y + frame.size.height / 2);
+}
+
 -(void)live {
     BOOL moved = NO;
     
@@ -232,7 +247,8 @@
                 ringState = dead;
                 break;
             }            
-            [self growRingSizeUsingFactor:15];
+            [self reduceRingSizeUsingFactor:4];
+//            [self reduceStrokeThickness];
             break;
         case reduceRingToHide :
         case reduceRedToHide :
@@ -260,6 +276,10 @@
     frame.origin.y += factor;
     frame.size.width -= 2 * factor;
     frame.size.height -= 2 * factor;
+    if (frame.size.width < 0 && frame.size.height < 0){
+        ringState = dead;
+    }
+
 }
 
 -(void) dealloc

@@ -17,6 +17,9 @@
 #import "ScoreManager.h"
 #import "Hero.h"
 #import "AccelerometerManager.h"
+#import "NotificationManager.h"
+#import "ScoreLabelManager.h"
+
 @class Timer;
 
 typedef enum{
@@ -25,7 +28,6 @@ typedef enum{
 }EgameState;
 
 @interface GameController : UIViewController <GameCenterManagerDelegate, UIAccelerometerDelegate>{
-    IBOutlet UILabel *incScoreLabel;
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *gameOverLabel;
     IBOutlet UIButton *BRestart;
@@ -44,6 +46,8 @@ typedef enum{
     Hero *hero;
     ScoreManager *scoreManager;
     AccelerometerManager *accelerometerManager;
+    NotificationManager *notificationManager;
+    ScoreLabelManager *scoreLabelManager;
     
     Timer *timer;
     
@@ -53,12 +57,11 @@ typedef enum{
     NSMutableArray *rings;
     NSMutableArray *deadRings;
     UIImageView *drawImage;
-    int incScoreTimeleft;
     Level *currentLevel;
     EgameState gameState;
     int drawLifes;
     int difficultyPourcentage;
-    
+    int nextRing;
 
 }
 
@@ -80,10 +83,13 @@ typedef enum{
 -(void) updateDynamicControlsAngle:(int)angle;
 -(void) updateStaticControlsAngle:(int)angle;
 -(void) initGame;
+-(void) addScore:(int)score_incr withColor:(UIColor*)color withPosition:(CGPoint)position;
 
+@property (nonatomic, strong, retain) NSMutableArray *rings; 
 @property (nonatomic, strong, retain) Hero* hero; 
 @property (nonatomic) CGPoint notificationDirection;
 @property (nonatomic, retain) IBOutlet UIButton *BNotification;
+@property (nonatomic, retain) Level *currentLevel;
 
 
 @end

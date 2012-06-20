@@ -17,7 +17,7 @@
 
 -(id)init:(GameController *) gc{
     image = [UIImageView alloc];
-    [image initWithFrame:CGRectMake(0, 0, BOULE_SIZE, BOULE_SIZE)];
+    [image initWithFrame:CGRectMake(200, 200, BOULE_SIZE, BOULE_SIZE)];
     UIImage* bouleImage = [UIImage imageNamed:@"Boule.png"];
     [image setImage:bouleImage];
     [bouleImage autorelease];

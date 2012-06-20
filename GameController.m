@@ -10,6 +10,7 @@
 #import "NavigationController.h"
 #import "AccelerometerManager.h"
 #import "Timer.h"
+#import "Notification.h"
 
 
 @implementation GameController
@@ -17,6 +18,8 @@
 @synthesize hero;
 @synthesize notificationDirection;
 @synthesize BNotification;
+@synthesize rings;
+@synthesize currentLevel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,13 +45,12 @@
         scoreManager = [[ScoreManager alloc] init];
         accelerometerManager = [[AccelerometerManager alloc] init:self];
         [AccelerometerManager setAccelerometer:self];
+        notificationManager = [[NotificationManager alloc]initWithGameController:self];
+        scoreLabelManager = [[ScoreLabelManager alloc] initWithGameController:self];
         ringsCatched = 0;
 
         [drawImage setFrame:self.view.frame];
         [drawImage addSubview:hero.image];
-        
-        //labelLevel = [[UILabel alloc] autorelease];
-        //labelLevelValue = [[UILabel alloc] autorelease];
         
         [self.view addSubview:drawImage];
 
@@ -56,7 +58,11 @@
         [timer init:self];        
         [timer initTimer];
         
-         [self showAlertWithTitle:@"Nice!" message:@""];
+        nextRing = 30;
+        
+        [notificationManager addNotification:@"Nice!"];
+        [scoreLabelManager addScoreLabel:69 withColor:[UIColor blueColor] withCenter:CGPointMake(69, 69)];
+        
     }
     return self;
 }
@@ -67,18 +73,18 @@
 }
 
 -(void)tick{    
-    int ringTimer = [currentLevel getRingTimer];
     if (gameState == playing){
-        if (([timer timerCount] % ringTimer) == 0)
+        nextRing -= 1;
+        if (nextRing < 0)
         {
             [self createRandomRing];
         }
     }    
-    [self reduceScoreLabelTime];
     [self live];
     [self draw];
     [self updateLabels];
     [self decreaseNotificationTimer];
+    [notificationManager tick];
 }
 
 -(CGPoint) getLifePosition:(int)position{
@@ -123,7 +129,6 @@
     }
 }
 
-
 -(void)resetLevel{
     [currentLevel reset];
     [self drawLevel];
@@ -139,7 +144,6 @@
     [BRestart setHidden:NO];
     hero.bouleMove = 20;
     [self updateHighScore];
-    [self resetLevel];
     NSLog(@"game over");  
     //[self pauseTimer];
 
@@ -156,33 +160,7 @@
     BNotification.frame = CGRectMake(BNotification.frame.origin.x + 2.5, BNotification.frame.origin.y, BNotification.frame.size.width, BNotification.frame.size.height);
 }
 
-- (void) showAlertWithTitle: (NSString*) title message: (NSString*) message
-{
-    notificationTimer = 240;
-    [BNotification setTitle:title forState:UIControlStateNormal];
-    BNotification.hidden = NO;
-    
-    int r = rand();
-    
-    int y = GAME_VIEW_BORDER + fmod(r, (self.view.frame.size.height - GAME_VIEW_BORDER));
-    int x = -BNotification.frame.size.width;
-    
-//    if (notificationDirection.x > 0){
-//        x = self.view.frame.size.width;
-//    }
-    BNotification.frame = CGRectMake(x, y, BNotification.frame.size.width, BNotification.frame.size.height);
-    
-//    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 50)];
-//    [l setText:@"yeahhh"]; 
-//    UIColor c = 
-//    [l setTextColor:[UIColor blackColor]];  
-//    [self.view addSubview:l];
-    
-//	UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: title message: message 
-//                                                   delegate: NULL cancelButtonTitle: @"OK" otherButtonTitles: NULL] autorelease];
-//	[alert show];
-	
-}
+
 
 
 - (void) scoreReported: (NSError*) error;
@@ -195,8 +173,9 @@
 	}
 	else
 	{
-		[self showAlertWithTitle: @"Score Report Failed!"
-						 message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
+        [notificationManager addNotification:@"Score Report Failed!"];
+//		[self showAlertWithTitle: @"Score Report Failed!"
+//						 message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]];
 	}
 }
 
@@ -223,11 +202,12 @@
 }
 
 
--(void) updateIncScoreLabel:(int)score_incr withRing:(Ring*)ring{
-    [incScoreLabel setText:[NSString stringWithFormat:@"+%d", score_incr]]; 
-    [incScoreLabel setTextColor:[ring getColor]];
-    incScoreLabel.center = CGPointMake(hero.image.frame.origin.x, hero.image.frame.origin.y);    
+-(void) addScore:(int)score_incr withColor:(UIColor*)color withPosition:(CGPoint)position{
+    [scoreLabelManager addScoreLabel:score_incr withColor:color withCenter:position];
+    scoreManager.score += score_incr;    
 }
+
+
 
 
 -(void) updateIncScore:(Ring*)ring{
@@ -238,13 +218,9 @@
     float ringLifeRatio = (ring.lifeCur / (float)ring.lifeMax);
     score_incr = score_incr * ringLifeRatio;
     score_incr /= 10;
-    [self updateIncScoreLabel:score_incr withRing:ring];
+//    CGPoint position = CGPointMake(hero.image.frame.origin.x, hero.image.frame.origin.y);
+    [self addScore:score_incr withColor:[ring getColor] withPosition:[ring getMiddle]];
     
-    // set score timer & show it
-    incScoreTimeleft = 60;    
-    [incScoreLabel setHidden:NO];
-        
-    scoreManager.score += score_incr;    
 }
 
 
@@ -275,7 +251,7 @@
 -(void)increaseLevel{
     [currentLevel updateLevel];
     [self drawLevel];
-    [self showAlertWithTitle:@"Level Up!" message:@""];
+    [notificationManager addNotification:[NSString stringWithFormat:@"Level %d", currentLevel.levelNumber]];
 }
 
 -(void) increaseRingsCatchedNumber{
@@ -304,7 +280,6 @@
                 [ring setDestination:destination];
                 [self bouleLooseLife];
                
-
 //                [self bouleIsInsideRing:ring];                
 //                ring.ringState = growToDie;
                 break;
@@ -312,8 +287,11 @@
             case living:
                 if ([ring isAroundRect:hero.image.frame]){
                     [self bouleIsInsideRing:ring];
-                    
                     ring.ringState = growToDie;
+                    if (rings.count <= 2){
+                        [self createRandomRing];
+                    }
+                    
                     break;
                 }
                 break;
@@ -321,7 +299,15 @@
                 break;
         }
         [ring live];        
+        for (int i = 0; i < rings.count;++i){
+            Ring* r = [rings objectAtIndex:i];
+            if (r.ringState == dead){
+                [rings removeObjectAtIndex:i];
+            }
+        }
+        
     }
+    [scoreLabelManager tick];
 }
 
 
@@ -333,10 +319,10 @@
 	}
 	else
 	{
-		UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: @"Game Center Account Required" 
-                                                        message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]
-                                                       delegate: self cancelButtonTitle: @"Try Again..." otherButtonTitles: NULL] autorelease];
-		[alert show];
+//		UIAlertView* alert= [[[UIAlertView alloc] initWithTitle: @"Game Center Account Required" 
+//                                                        message: [NSString stringWithFormat: @"Reason: %@", [error localizedDescription]]
+//                                                       delegate: self cancelButtonTitle: @"Try Again..." otherButtonTitles: NULL] autorelease];
+//		[alert show];
 	}
 	
 }
@@ -349,9 +335,11 @@
     [BRestart setHidden:YES];
     hero.life = START_LIFE;
     [timer resetTimer];
-    hero.bouleMove = 100;
     [timer startTimer];
+    hero.bouleMove = 100;
     [self updateHighScore];
+    scoreManager.score = 0;
+    [self resetLevel];
 }
 
 -(IBAction)BARestart:(id)sender{
@@ -364,7 +352,8 @@
 
 - (void) createRandomRing{   
 
-    Ring *ring = [currentLevel getRingWithMinimumSize:hero canvasSize:drawImage.frame.size];    
+    Ring *ring = [currentLevel getRingWithMinimumSize:hero withGameController:self];    
+    nextRing = [currentLevel getRingTimer];
     [rings addObject:ring];
 }
 
@@ -382,7 +371,7 @@
 
 
 -(void) updateDynamicControlsAngle:(int)angle{
-    incScoreLabel.transform = CGAffineTransformMakeRotation(angle);    
+    [scoreLabelManager transformLabels:angle];
 }
 
 
@@ -406,28 +395,20 @@
 
 
 -(void) resumeGame{
-    //[accelerometerManager setAccelerometer:self];
+    [AccelerometerManager setAccelerometer:self];
     [timer startTimer];
 }
 
 
 -(void) bouleLooseLife{
     [hero looseLife];
+    [notificationManager addNotification:[NSString stringWithFormat:@"%d lives", [hero life]]];
     if ([hero isDead]){
         [self gameOver];                
     }
 }
 
 
--(void) reduceScoreLabelTime{
-    if (incScoreTimeleft > 0)
-    {
-        --incScoreTimeleft;
-    }
-    if (incScoreTimeleft == 0) {
-        [incScoreLabel setHidden:YES];
-    }
-}
 
 #pragma mark - View lifecycle
 
@@ -447,8 +428,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [incScoreLabel setHidden:YES];
-    //[self moveBoule:20 withY:20];
 }
 
 - (void)viewDidLoad {    

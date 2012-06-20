@@ -36,7 +36,8 @@ typedef enum
     int redZoneSize;
 }
 
-
+-(CGPoint)getMiddle;
+-(BOOL)collideAnotherRing:(NSMutableArray *)rings;
 -(Ring*)initWithFrame:(CGRect)_frame life:(int)_life;
 -(void)draw:(CGContextRef)context;
 -(void)live;

@@ -12,6 +12,7 @@
 #import "LevelOptions.h" 
 #import "Hero.h"
 
+@class GameController;
 
 @interface Level : NSObject{
     
@@ -24,9 +25,11 @@
 
 -(NSString*) getLevelNumber;
 -(Level*)initWithOptions:(LevelOptions*)_options;
--(Ring*)getRingWithMinimumSize:(Hero *)hero canvasSize:(CGSize)canvasSize;
+-(Ring*)getRingWithMinimumSize:(Hero *)hero withGameController:(GameController *)gc ;
 -(int)getRingTimer;
 -(void) updateLevel;
 -(int) getDifficultyPercentage;
 -(void)reset;
+
+@property (nonatomic) int levelNumber;
 @end

@@ -155,7 +155,7 @@
 
 - (void) authenticateLocalUser
 {
-	if([GKLocalPlayer localPlayer].authenticated == NO)
+	if([GKLocalPlayer localPlayer].authenticated == NO && [GKLocalPlayer localPlayer].isAuthenticated == NO)
 	{
 		[[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) 
 		{
